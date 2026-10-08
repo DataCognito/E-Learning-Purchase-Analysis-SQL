@@ -84,8 +84,8 @@ SELECT
     c.unit_price,
     COUNT(p.purchase_id) AS times_purchased,
     ROUND(SUM(p.quantity * c.unit_price), 2) AS total_revenue
-FROM purchases p
-RIGHT JOIN courses c ON p.course_id = c.course_id
+FROM courses c
+LEFT JOIN purchases p ON c.course_id = p.course_id
 GROUP BY c.course_id, c.course_name, c.category, c.unit_price
 ORDER BY total_revenue DESC;
 
